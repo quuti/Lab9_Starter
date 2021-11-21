@@ -87,7 +87,14 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "491196540cdc48ec8d630a683759df49"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -102,6 +109,113 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    TrackJS.track('Testing TrackJS!');
+
+    errorBtns[0].addEventListener('click', () => {
+      console.log('Console Log Demo');
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      console.error('Console Error Demo');
+    });
+
+    errorBtns[2].addEventListener('click', () => {
+      console.count('Console Count Demo');
+    });
+
+    errorBtns[3].addEventListener('click', () => {
+      console.warn('Console Warn Demo');
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      const num = 2;
+      const errorMsg = 'This number is not 1';
+      console.assert(num == 1, {num, errorMsg});
+    });
+
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(document.head);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(document);
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.group('Console Group Demo');
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd();
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      console.table([
+        {
+          name: 'Andrew Park',
+          age: 21
+        },
+        {
+          name: 'Marcus Mark',
+          age: 54
+        },
+        {
+          name: 'Henry Hens',
+          age: 14
+        }
+      ]);
+    });
+
+    errorBtns[11].addEventListener('click', () => {
+      console.time('Console Timer Demo');
+    });
+
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd('Console Timer Demo');
+    });
+
+    errorBtns[13].addEventListener('click', () => {
+      var levelOne = () => {levelTwo();};
+      var levelTwo = () => {levelThree();};
+      var levelThree = () => {console.trace();};
+
+      levelOne();
+    });
+
+    errorBtns[14].addEventListener('click', () => {
+      let globalError = new Error('Global Error Triggered');
+      throw globalError;
+    });
+
+    try{
+      errorBtns[15].addEventListener('click', () => {
+        console.log('Clicked!');
+      });
+    }
+    catch(err){
+      console.log('Unable to click! Does not exist');
+    }
+    finally{
+      console.log('Regardless, this is here!');
+    }
+
+    class fakeError extends Error{
+      constructor(message){
+        super(message);
+        this.name = 'fakeError';
+      }
+    }
+    try{
+      fakeError();
+    }
+    catch(err){
+      console.log(err.name);
+      console.log(err.message);
+    }
   </script>
 </body>
 
