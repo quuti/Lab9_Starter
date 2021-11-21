@@ -209,8 +209,12 @@
         this.name = 'fakeError';
       }
     }
+    function throwFakeError(){
+      throw new fakeError('My custom error works!');
+    }
+
     try{
-      fakeError();
+      throwFakeError();
     }
     catch(err){
       console.log(err.name);
